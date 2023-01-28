@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//[ExcuteInEditMode()]
 public class ProgressBar : MonoBehaviour
 {
     public int maximum;

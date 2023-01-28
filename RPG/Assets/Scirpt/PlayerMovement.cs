@@ -74,13 +74,15 @@ public class PlayerMovement : MonoBehaviour
             }
             if (bonus.Type == BonusType.HealthKit)
             {
-                StartCoroutine(BoostSpeed());
+                bonus.PickUp();
+                TryGetComponent<ProgressBar>(out var HP);
             }
             else if (bonus.Type == BonusType.JumpDebaff)
             {
                 bonus.PickUp();
                 StartCoroutine(JumpDebaff());
             }
+
         }
     }
     IEnumerator SlowSpeed()
@@ -106,13 +108,5 @@ public class PlayerMovement : MonoBehaviour
         jumpHeight -= 0.4f;
         yield return new WaitForSeconds(5.0f);
         jumpHeight += 0.4f;
-    }
-    IEnumerator HealthKit()
-    {
-        for(int i=0;i<=10;i++)
-        {
-            yield return new WaitForSeconds(1.0f);
-           
-        }
     }
 }
