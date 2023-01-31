@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6776723365726899265
 Transform:
   m_ObjectHideFlags: 0
@@ -4941,7 +4941,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   render: {fileID: 6797130723547365443}
   trigercollider: {fileID: 6776723365781092966}
-  particle: {fileID: 6775236293232763031}
+  particle: {fileID: 0}
   image: {fileID: 0}
   Type: 4
 --- !u!136 &6776723365781092966

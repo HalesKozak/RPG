@@ -26,4 +26,4 @@ public class Bonus : MonoBehaviour
         Destroy(gameObject);
     }
 }
-public enum BonusType { Slow, Speed, JumpBaff, JumpDebaff, HealthKit }
+public enum BonusType { Slow, Speed, JumpBaff, JumpDebaff, HealthKit, ManaKit }
