@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform player;
     Animator animator;
 
-    public float speed = 4f;
+    public float speed = 4;
     public float gravity = -10;
     public float jumpHeight = 0.7f;
 
@@ -37,38 +37,34 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * speed * Time.deltaTime);
-        if(Input.GetKeyDown(KeyCode.W)) animator.SetBool("isRuning", true);
-        if(Input.GetKeyUp(KeyCode.W)) animator.SetBool("isRuning", false);
+        velocity.y += gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+
+        animator.SetFloat("Speed",speed);
+
         //Shift
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            speed -= 2f;
-            animator.SetBool("isWalking", true);
-        }
+            speed -= 2f;        }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             speed += 2f;
-            animator.SetBool("isWalking", false);
+            //animator.SetBool("isWalking", false);
         }
         //Ctrl
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             speed += 2f;
-            animator.SetBool("isFast_Runing", true);
+            //animator.SetBool("isFast_Runing", true);
         }
         else if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             speed -= 2f;
-            animator.SetBool("isFast_Runing", false);
+            //animator.SetBool("isFast_Runing", false);
         }
 
         if (Input.GetButtonDown("Jump"))
         {
-            // if(Input.GetKeyDown(KeyCode.W)|| Input.GetKeyDown(KeyCode.LeftControl))
-            //{
-            //    animator.SetBool("isjumping", true);
-            //}
-            // else animator.SetBool("isjumping", false);
             if (isGrounded || doubleJump)
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
@@ -78,12 +74,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
                 doubleJump = false;
-                //  animator.SetBool("isJumpRuning",true)
             }
             // else animator.SetBool("isJumpRuning", false);
-        }
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);  
+        } 
     }
     private void OnTriggerEnter(Collider other)
     {
