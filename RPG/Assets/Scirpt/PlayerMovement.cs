@@ -48,12 +48,12 @@ public class PlayerMovement : MonoBehaviour
                 else if(speed<6) animator.SetFloat("Side",2);
                 else animator.SetFloat("Side",3);
             }
-            if (Input.GetKey(KeyCode.S))
+            else if(Input.GetKey(KeyCode.S))
             {
                 if (speed<3)animator.SetFloat("Side", 8);
                 else animator.SetFloat("Side", 9);
             }
-            if (Input.GetKey(KeyCode.A))
+            if(Input.GetKey(KeyCode.A))
             {
                 if (speed <3) animator.SetFloat("Side", 4);
                 else animator.SetFloat("Side", 7);
