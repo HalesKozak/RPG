@@ -81,6 +81,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: e51bd346f24ab2c4783211b98bfb62a4, type: 3}
   - {fileID: 21300000, guid: e3e0bf567e013164bab2b74e80ae37bf, type: 3}
   - {fileID: 21300000, guid: b523df5621b5d9743b2ba49e01570b6f, type: 3}
+  - {fileID: 21300000, guid: cfcd8496669e4d94fb4918120a90e424, type: 3}
   - {fileID: 21300000, guid: 490de5b67a54a914088038c8d2c8282f, type: 3}
   - {fileID: 21300000, guid: 4ec5e8e694bc3334db32778bebfd01e7, type: 3}
   - {fileID: 21300000, guid: 59404f171a3d5694fa1650a8c37fc39f, type: 3}
@@ -164,6 +165,7 @@ SpriteAtlas:
   - OldPoleaxe (Type=Weapon, Collection=Basic, Tags=Axe&2H)
   - ScoutHelm (Type=Helmet, Collection=Basic)
   - Cheese (Type=Supplies, Collection=Pro)
+  - Apple (Type=Supplies, Collection=Pro) 1
   - SharpenedInfantrySword (Type=Weapon, Collection=AbandonedWorkshop, Tags=Sword&1H)
   - BattleguardArmor (Type=Armor, Collection=AbandonedWorkshop)
   - DarkMountain (Type=Boots, Collection=Thrones)
