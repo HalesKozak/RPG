@@ -49,7 +49,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 0
@@ -4918,7 +4918,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6775236295788765615}
-  m_LocalRotation: {x: -0, y: -0, z: 0.0015356952, w: 0.9999988}
+  m_LocalRotation: {x: 0, y: 0, z: 0.0015358527, w: 0.9999988}
   m_LocalPosition: {x: 25, y: 1.474, z: 25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4941,7 +4941,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   render: {fileID: 6797130723547365443}
   trigercollider: {fileID: 6776723365781092966}
-  particle: {fileID: 0}
+  particle: {fileID: 6775236293232763031}
   image: {fileID: 0}
   Type: 4
 --- !u!136 &6776723365781092966

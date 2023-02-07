@@ -37,11 +37,11 @@ public class Inventory : MonoBehaviour
 
     public void Update()
     {
-        if(currentID != -1)
+        if (currentID != -1)
         {
             MoveObject();
         }
-        if(Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             Cursor.lockState = CursorLockMode.Confined;
             background.SetActive(!background.activeSelf);
@@ -203,12 +203,11 @@ public class Inventory : MonoBehaviour
 
     public void MoveObject()
     {
-        Vector3 pos = Input.mousePosition + offset;
-        pos.z = InventoryMainObj.GetComponent<RectTransform>().position.z;
-        movingObject.position = cam.ScreenToWorldPoint(pos);
+        //pos.z = InventoryMainObj.GetComponentInChildren<RectTransform>().position.z;
+        //movingObject.position = transform.Translate(pos * Time.deltaTime);
+        movingObject.gameObject.transform.Translate(Input.mousePosition * Time.deltaTime);
     }
 
-    
     public ItemInventory CopyInventoryItem(ItemInventory old)
     {
         ItemInventory New = new ItemInventory();
@@ -216,7 +215,6 @@ public class Inventory : MonoBehaviour
         New.id = old.id;
         New.itemGameObj = old.itemGameObj;
         New.count = old.count;
-
         return New;
     }
 }

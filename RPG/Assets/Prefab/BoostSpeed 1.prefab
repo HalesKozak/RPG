@@ -114,8 +114,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   render: {fileID: 2043452982369243572}
   trigercollider: {fileID: 1599862567065527144}
-  Type: 1
   particle: {fileID: 7609824530251204433}
+  image: {fileID: 0}
+  Type: 1
 --- !u!1 &7609824530251204433
 GameObject:
   m_ObjectHideFlags: 0
