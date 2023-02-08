@@ -13,6 +13,7 @@ public class DataBase : MonoBehaviour
 public class Item
 {
     public int id;
+    public float damage;
     public string name;
     public Sprite img;
 }

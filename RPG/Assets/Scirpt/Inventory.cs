@@ -203,9 +203,10 @@ public class Inventory : MonoBehaviour
 
     public void MoveObject()
     {
-        //pos.z = InventoryMainObj.GetComponentInChildren<RectTransform>().position.z;
-        //movingObject.position = transform.Translate(pos * Time.deltaTime);
-        movingObject.gameObject.transform.Translate(Input.mousePosition * Time.deltaTime);
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = 0.35f;
+        Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        movingObject.position = worldPosition;
     }
 
     public ItemInventory CopyInventoryItem(ItemInventory old)
