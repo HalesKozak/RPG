@@ -5,10 +5,9 @@ using UnityEngine.UI;
 
 public class ProgressBar : MonoBehaviour
 {
-    public int maximum;
-    public int minimum;
-    public int currentHP;
-    public int currentMP;
+    //[SerializeField] private StatsPlayer _statsPlayer;
+    //private int maximum = 100;
+    //private int minimum = 0;
     public Image maskHP;
     public Image maskMP;
 
@@ -19,12 +18,12 @@ public class ProgressBar : MonoBehaviour
 
     void GetCurrentFill()
     {
-        float currentHPOffset = currentHP - minimum;
-        float currentMPOffset = currentMP - minimum;
-        float maximumOffset = maximum - minimum;
-        float fillHPAmount = currentHPOffset /maximumOffset;
-        float fillMPAmount = currentMPOffset / maximumOffset;
-        maskHP.fillAmount = fillHPAmount;
-        maskMP.fillAmount = fillMPAmount;
+        //float currentHPOffset = _statsPlayer.HP - minimum;
+        //float currentMPOffset = _statsPlayer.MP - minimum;
+        //float maximumOffset = maximum - minimum;
+        //float fillHPAmount = currentHPOffset / maximumOffset;
+        //float fillMPAmount = currentMPOffset / maximumOffset;
+        //maskHP.fillAmount = fillHPAmount;
+        //maskMP.fillAmount = fillMPAmount;
     }
 }

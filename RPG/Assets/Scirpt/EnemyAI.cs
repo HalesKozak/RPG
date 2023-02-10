@@ -8,17 +8,16 @@ public class EnemyAI : MonoBehaviour
     public NavMeshAgent navMeshAgent;               //  Nav mesh agent component
     public float startWaitTime = 4;                 //  Wait time of every action
     public float timeToRotate = 2;                  //  Wait time when the enemy detect near the player without seeing
-    public float speedWalk = 6;                     //  Walking speed, speed in the nav mesh agent
-    public float speedRun = 9;                      //  Running speed
+    public float speedWalk;                     //  Walking speed, speed in the nav mesh agent
+    public float speedRun;                      //  Running speed
 
-    public float viewRadius = 15;                   //  Radius of the enemy view
-    public float viewAngle = 90;                    //  Angle of the enemy view
+    public float viewRadius;                   //  Radius of the enemy view
+    public float viewAngle;                    //  Angle of the enemy view
     public LayerMask playerMask;                    //  To detect the player with the raycast
     public LayerMask obstacleMask;                  //  To detect the obstacules with the raycast
     public float meshResolution = 1.0f;             //  How many rays will cast per degree
     public int edgeIterations;                  //  Number of iterations to get a better performance of the mesh filter when the raycast hit an obstacule
     public float edgeDistance;               //  Max distance to calcule the a minumun and a maximum raycast when hits something
-
 
     public Transform[] waypoints;                   //  All the waypoints where the enemy patrols
     int m_CurrentWaypointIndex;                     //  Current waypoint where the enemy is going to
@@ -33,6 +32,9 @@ public class EnemyAI : MonoBehaviour
     bool m_IsPatrol;                                //  If the enemy is patrol, state of patroling
     bool m_CaughtPlayer;                            //  if the enemy has caught the player
 
+    Animator animator;
+
+    
     void Start()
     {
         m_PlayerPosition = Vector3.zero;
@@ -49,18 +51,28 @@ public class EnemyAI : MonoBehaviour
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speedWalk;             //  Set the navemesh speed with the normal speed of the enemy
         navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);    //  Set the destination to the first waypoint
+
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         EnviromentView();                       //  Check whether or not the player is in the enemy's field of vision
 
-        if (!m_IsPatrol) Chasing();
-        else Patroling();
+        if (!m_IsPatrol)
+        {
+            Chasing();
+        }
+        else
+        {
+            Patroling();
+        }
+
     }
 
     private void Chasing()
     {
+        animator.SetFloat("Speed", navMeshAgent.speed);
         //  The enemy is chasing the player
         m_PlayerNear = false;                       //  Set false that hte player is near beacause the enemy already sees the player
         playerLastPosition = Vector3.zero;          //  Reset the player near position
@@ -71,6 +83,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)    //  Control if the enemy arrive to the player location
         {
+            animator.SetFloat("Speed", 0);
             if (m_WaitTime <= 0 && !m_CaughtPlayer && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 4f)
             {
                 //  Check if the enemy is not near to the player, returns to patrol after the wait time delay
@@ -83,7 +96,7 @@ public class EnemyAI : MonoBehaviour
             }
             else
             {
-                if (Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 2.5f)
+                if (Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
                 { //  Wait if the current position is not the player position
                     Stop();
                     m_WaitTime -= Time.deltaTime;
@@ -94,6 +107,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Patroling()
     {
+        animator.SetFloat("Speed", navMeshAgent.speed);
         if (m_PlayerNear)
         {
             //  Check if the enemy detect near the player, so the enemy will move to that position
@@ -132,11 +146,6 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void OnAnimatorMove()
-    {
-
-    }
-
     public void NextPoint()
     {
         m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
@@ -147,6 +156,7 @@ public class EnemyAI : MonoBehaviour
     {
         navMeshAgent.isStopped = true;
         navMeshAgent.speed = 0;
+        animator.SetFloat("Speed", navMeshAgent.speed);
     }
 
     void Move(float speed)
