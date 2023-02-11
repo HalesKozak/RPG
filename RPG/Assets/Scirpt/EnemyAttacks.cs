@@ -2,37 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttacks : MonoBehaviour
+public class EnemyAttacks : MonoBehaviour
 {
-    [SerializeField] private StatsPlayer _strength;
+    [SerializeField] private EnemyStats _strength;
     private float timeBtwAttack;
     public float startTimeBtwAttack;
 
     public Transform attackPose;
     public float attackRange;
-    public LayerMask whatIsEnemy;
+    public LayerMask whatIsPlayer;
 
-    void Update()
+    public void Attack()
     {
         if (timeBtwAttack <= 0)
         {
-            if(Input.GetKey(KeyCode.Mouse0))
-            {
-                Collider[] enemisToDamage = Physics.OverlapSphere(attackPose.position, attackRange, whatIsEnemy);
-                for (int i = 0; i < enemisToDamage.Length; i++)
+                Collider[] playerToDamage = Physics.OverlapSphere(attackPose.position, attackRange, whatIsPlayer);
+                for (int i = 0; i < playerToDamage.Length; i++)
                 {
-                    enemisToDamage[i].GetComponent<EnemyStats>().TakeDamage(_strength.Strength);
+                    playerToDamage[i].GetComponent<StatsPlayer>().TakeDamage(_strength.strength);
                 }
-
                 timeBtwAttack = startTimeBtwAttack;
-            }
         }
         else
         {
             timeBtwAttack -= Time.deltaTime;
         }
     }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

@@ -9,4 +9,9 @@ public class StatsPlayer : MonoBehaviour
     public int HP;
     public int MP;
     public int Strength;
+
+    public void TakeDamage(int damage)
+    {
+        HP -= damage;
+    }
 }

@@ -34,6 +34,8 @@ public class EnemyAI : MonoBehaviour
 
     Animator animator;
 
+    [SerializeField] private EnemyAttacks _enemyAttacks;
+
     
     void Start()
     {
@@ -84,6 +86,7 @@ public class EnemyAI : MonoBehaviour
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)    //  Control if the enemy arrive to the player location
         {
             animator.SetFloat("Speed", 0);
+            _enemyAttacks.Attack();
             if (m_WaitTime <= 0 && !m_CaughtPlayer && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 4f)
             {
                 //  Check if the enemy is not near to the player, returns to patrol after the wait time delay
@@ -96,7 +99,7 @@ public class EnemyAI : MonoBehaviour
             }
             else
             {
-                if (Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 6f)
+                if (Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 3f)
                 { //  Wait if the current position is not the player position
                     Stop();
                     m_WaitTime -= Time.deltaTime;
