@@ -12,22 +12,29 @@ public class EnemyAttacks : MonoBehaviour
     public float attackRange;
     public LayerMask whatIsPlayer;
 
+    public Animator animator;
+
     public void Attack()
     {
+        animator.SetBool("Attack", true);
         if (timeBtwAttack <= 0)
         {
-                Collider[] playerToDamage = Physics.OverlapSphere(attackPose.position, attackRange, whatIsPlayer);
-                for (int i = 0; i < playerToDamage.Length; i++)
-                {
-                    playerToDamage[i].GetComponent<StatsPlayer>().TakeDamage(_strength.strength);
-                }
-                timeBtwAttack = startTimeBtwAttack;
+            //animator.SetBool("Attack", true);
+            Collider[] playerToDamage = Physics.OverlapSphere(attackPose.position, attackRange, whatIsPlayer);
+            for (int i = 0; i < playerToDamage.Length; i++)
+            {
+                playerToDamage[i].GetComponent<StatsPlayer>().TakeDamage(_strength.strength);
+            }
+            timeBtwAttack = startTimeBtwAttack;
+
         }
         else
         {
+            animator.SetBool("Attack", false);
             timeBtwAttack -= Time.deltaTime;
         }
     }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

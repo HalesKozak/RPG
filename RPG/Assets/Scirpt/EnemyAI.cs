@@ -5,6 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    [SerializeField] private EnemyAttacks _enemyAttacks;
+
+
     public NavMeshAgent navMeshAgent;               //  Nav mesh agent component
     public float startWaitTime = 4;                 //  Wait time of every action
     public float timeToRotate = 2;                  //  Wait time when the enemy detect near the player without seeing
@@ -31,11 +34,7 @@ public class EnemyAI : MonoBehaviour
     bool m_PlayerNear;                              //  If the player is near, state of hearing
     bool m_IsPatrol;                                //  If the enemy is patrol, state of patroling
     bool m_CaughtPlayer;                            //  if the enemy has caught the player
-
     Animator animator;
-
-    [SerializeField] private EnemyAttacks _enemyAttacks;
-
     
     void Start()
     {
