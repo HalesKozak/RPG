@@ -58,8 +58,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        EnviromentView();                       //  Check whether or not the player is in the enemy's field of vision
-
+        EnviromentView();                       //  Check whether or not the player is in the enemy's field of vision;
         if (!m_IsPatrol)
         {
             Chasing();
@@ -73,7 +72,6 @@ public class EnemyAI : MonoBehaviour
 
     private void Chasing()
     {
-        animator.SetFloat("Speed", navMeshAgent.speed);
         //  The enemy is chasing the player
         m_PlayerNear = false;                       //  Set false that hte player is near beacause the enemy already sees the player
         playerLastPosition = Vector3.zero;          //  Reset the player near position
@@ -84,8 +82,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)    //  Control if the enemy arrive to the player location
         {
-            animator.SetFloat("Speed", 0);
-            _enemyAttacks.Attack();
+            animator.SetFloat("Speed",3);
             if (m_WaitTime <= 0 && !m_CaughtPlayer && Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) >= 4f)
             {
                 //  Check if the enemy is not near to the player, returns to patrol after the wait time delay
@@ -109,7 +106,6 @@ public class EnemyAI : MonoBehaviour
 
     private void Patroling()
     {
-        animator.SetFloat("Speed", navMeshAgent.speed);
         if (m_PlayerNear)
         {
             //  Check if the enemy detect near the player, so the enemy will move to that position
@@ -165,11 +161,7 @@ public class EnemyAI : MonoBehaviour
     {
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = speed;
-    }
-
-    void CaughtPlayer()
-    {
-        m_CaughtPlayer = true;
+        animator.SetFloat("Speed", navMeshAgent.speed);
     }
 
     void LookingPlayer(Vector3 player)
