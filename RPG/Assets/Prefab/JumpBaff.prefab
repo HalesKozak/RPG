@@ -112,10 +112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac30b64e20c67c42846d329c83bfc23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  image: {fileID: 0}
   render: {fileID: 7145448655608597414}
   trigercollider: {fileID: 3157854623628034348}
   particle: {fileID: 9045966996430187893}
-  image: {fileID: 0}
   Type: 2
 --- !u!1 &6956443196239496186
 GameObject:

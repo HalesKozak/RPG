@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyStats : MonoBehaviour
 {
-    private UnityEngine.Object exposion;
+    [SerializeField] private GameObject prefabDead;
     public GameObject particleDamage;
 
     public int health;
@@ -14,10 +14,6 @@ public class EnemyStats : MonoBehaviour
     public Image healthbar;
     private float fill;
 
-    private void Start()
-    {
-        exposion = Resources.Load("ExposionDead");
-    }
     private void Update()
     {
         fill = health/100f;
@@ -41,9 +37,9 @@ public class EnemyStats : MonoBehaviour
     }
     IEnumerator ParticleDead()
     {
-        GameObject exposionRef = (GameObject)Instantiate(exposion);
+        GameObject exposionRef = Instantiate(prefabDead);
         exposionRef.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
         Destroy(exposionRef);
     }
 }

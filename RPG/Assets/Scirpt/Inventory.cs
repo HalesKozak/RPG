@@ -14,6 +14,7 @@ public class Inventory : MonoBehaviour
     public GameObject gameObjShow;
     public GameObject InventoryMainObj;
     public GameObject background;
+    public GameObject hotBar;
 
     public int maxCount;
 
@@ -45,12 +46,17 @@ public class Inventory : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.Confined;
             background.SetActive(!background.activeSelf);
+            hotBar.SetActive(!hotBar.activeSelf);
             if(background.activeSelf)
             {
                 UpdateInventory();
             }
         }
-        else if(!background.activeSelf) Cursor.lockState = CursorLockMode.Locked;
+        else if(!background.activeSelf)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            CopyHotBar();
+        }
     }
 
     public void SearchForSameItem(Item item, int count)
@@ -207,6 +213,11 @@ public class Inventory : MonoBehaviour
         mousePosition.z = 0.35f;
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
         movingObject.position = worldPosition;
+    }
+
+    public void CopyHotBar()
+    {
+       
     }
 
     public ItemInventory CopyInventoryItem(ItemInventory old)

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Bonus : MonoBehaviour
 {
+    [SerializeField] private GameObject image;
     public MeshRenderer render;
     public Collider trigercollider;
     public GameObject particle;
-    public GameObject image;
 
     public BonusType Type;
 
