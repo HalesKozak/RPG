@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7511138252776562708}
   - component: {fileID: 7511138252776562709}
   - component: {fileID: 7511138252776562710}
+  - component: {fileID: 1888976860424774273}
   m_Layer: 9
   m_Name: ExposionDead
   m_TagString: Untagged
@@ -4870,3 +4871,16 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &1888976860424774273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7511138252776562711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eab1cf32323addb4c9ec7be89a1b76c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 2
