@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5378227378166785615}
   - component: {fileID: 1008595799769995680}
   - component: {fileID: 474211130610902514}
+  - component: {fileID: 130030883}
   m_Layer: 0
   m_Name: ThorHammer
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5882740418562934682}
-  m_LocalRotation: {x: -0, y: -0, z: -0.26483306, w: 0.9642943}
+  m_LocalRotation: {x: 0, y: 0, z: -0.26483247, w: 0.9642945}
   m_LocalPosition: {x: 0.008558132, y: -0.0023505408, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -112,3 +113,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 2
   MaterialType: 1
+--- !u!95 &130030883
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5882740418562934682}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 50d492dd500f2f64fb57e09bfb79b869, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
