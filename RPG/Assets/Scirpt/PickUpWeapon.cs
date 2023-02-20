@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PickUpWeapon : MonoBehaviour
 {
-    [SerializeField] private Inventory _inventory;
-    public DataBase data;
     //private void OnTriggerEnter(Collider other)
     //{
     //    if (other.TryGetComponent<Weapon>(out var weapon) == true)

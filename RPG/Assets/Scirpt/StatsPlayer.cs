@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class StatsPlayer : MonoBehaviour
 {
-    [SerializeField] private Inventory _inventory;
-    [SerializeField] private DataBase _dataBase;
     public GameObject particleDamage;
     public int HP;
     public int MP;
