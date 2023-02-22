@@ -5,8 +5,8 @@ using UnityEngine;
 public class StatsPlayer : MonoBehaviour
 {
     public GameObject particleDamage;
-    public int HP;
-    public int MP;
+    public float HP;
+    public float MP;
     public int Strength;
 
     public void TakeDamage(int damage)

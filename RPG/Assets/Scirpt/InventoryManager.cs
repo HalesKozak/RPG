@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public GameObject UIPanel;
+    public GameObject UIBG;
     public Transform inventoryPanel;
     public List<InventorySlot> slots = new List<InventorySlot>();
     public bool isOpened;
@@ -13,7 +13,7 @@ public class InventoryManager : MonoBehaviour
     private Camera mainCamera;
     private void Awake()
     {
-        UIPanel.SetActive(true);
+        UIBG.SetActive(true);
     }
     void Start()
     {
@@ -25,7 +25,8 @@ public class InventoryManager : MonoBehaviour
                 slots.Add(inventoryPanel.GetChild(i).GetComponent<InventorySlot>());
             }
         }
-        UIPanel.SetActive(false);
+        UIBG.SetActive(false);
+        inventoryPanel.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -36,7 +37,8 @@ public class InventoryManager : MonoBehaviour
             isOpened = !isOpened;
             if (isOpened)
             {
-                UIPanel.SetActive(true);
+                UIBG.SetActive(true);
+                inventoryPanel.gameObject.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
                 // и делаем его невидимым
                 Cursor.visible = true;
@@ -44,7 +46,8 @@ public class InventoryManager : MonoBehaviour
             }
             else
             {
-                UIPanel.SetActive(false);
+                UIBG.SetActive(false);
+                inventoryPanel.gameObject.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
                 // и делаем его невидимым
                 Cursor.visible = false;

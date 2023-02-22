@@ -11,4 +11,10 @@ public class ItemSObject : ScriptableObject
     public Sprite icon;
     public ItemType itemType;
     public string itemDescription;
+    public bool isConsumeable;
+
+    public float speedCount;
+    public float jumpCount;
+    public float healthCount;
+    public float manaCount;
 }
