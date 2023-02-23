@@ -17,4 +17,5 @@ public class ItemSObject : ScriptableObject
     public float jumpCount;
     public float healthCount;
     public float manaCount;
+    public float damage;
 }

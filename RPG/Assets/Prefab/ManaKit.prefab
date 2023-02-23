@@ -114,8 +114,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8048531507581604235}
-  - component: {fileID: 8048531507581604237}
   - component: {fileID: 8048531507581604234}
+  - component: {fileID: -6412765187032641442}
   m_Layer: 0
   m_Name: ManaKit
   m_TagString: Untagged
@@ -132,30 +132,13 @@ Transform:
   m_GameObject: {fileID: 8052322607416051661}
   m_LocalRotation: {x: 0, y: 0, z: 0.0051486995, w: 0.99998677}
   m_LocalPosition: {x: 25.96379, y: 1.4995679, z: 25}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8048531508715518763}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.59}
---- !u!114 &8048531507581604237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8052322607416051661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ac30b64e20c67c42846d329c83bfc23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  render: {fileID: 8065282127543425877}
-  trigercollider: {fileID: 8048531507581604234}
-  particle: {fileID: 8052322608306662095}
-  image: {fileID: 0}
-  Type: 5
 --- !u!136 &8048531507581604234
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -170,6 +153,20 @@ CapsuleCollider:
   m_Height: 0.5949332
   m_Direction: 1
   m_Center: {x: 0.030540943, y: -0.020543128, z: 0.002106905}
+--- !u!114 &-6412765187032641442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8052322607416051661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881c0d7dc8858c242879b1043aa24605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: fb519df73bc86cf40aec301d7f275bf4, type: 2}
+  amount: 1
 --- !u!1 &8052322607810961931
 GameObject:
   m_ObjectHideFlags: 0

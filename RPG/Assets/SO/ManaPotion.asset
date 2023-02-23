@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42d3696d48bd1614ab0f7f960de73747, type: 3}
+  m_Name: ManaPotion
+  m_EditorClassIdentifier: 
+  itemName: ManaPotion
+  maximumAmount: 5
+  itemPrefab: {fileID: 8052322607416051661, guid: 25c475c5f301b244cb44c7f38f7546c1, type: 3}
+  icon: {fileID: 21300000, guid: cc6104562e6c8534b9acd8ba496b4114, type: 3}
+  itemType: 1
+  itemDescription: Mana +10
+  isConsumeable: 1
+  speedCount: 0
+  jumpCount: 0
+  healthCount: 0
+  manaCount: 10

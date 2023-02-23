@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     private bool isGrounded;
 
+    public InventoryManager _inventoryManager;
+    public QuickslotInventory _quickslotInventory;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -37,6 +39,27 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(move * speed * Time.deltaTime);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            if (_quickslotInventory.activeSlot != null)
+            {
+                if (_quickslotInventory.activeSlot.item != null)
+                {
+                    if(_quickslotInventory.activeSlot.item.itemType == ItemType.Weapon)
+                    {
+                        if (_inventoryManager.isOpened == false)
+                        {
+                            //Hit 
+                        }
+                    }
+                }
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.Mouse0))
+        {
+            // hit = false
+        }
 
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) 
         {
@@ -94,67 +117,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Bonus>(out var bonus)==true)
-        {
-            if(bonus.Type== BonusType.Slow)
-            {
-                bonus.PickUp();
-                StartCoroutine(SlowSpeed());
-            }
-            else if(bonus.Type == BonusType.Speed)
-            {
-                bonus.PickUp();
-                StartCoroutine(BoostSpeed());
-            }
-            else if(bonus.Type == BonusType.JumpBaff)
-            {
-                bonus.PickUp();
-                StartCoroutine(JumpBaff());
-            }
-            else if(bonus.Type == BonusType.HealthKit)
-            {
-                bonus.PickUp();
-                TryGetComponent<ProgressBar>(out var HP);
-            }
-            else if (bonus.Type == BonusType.JumpDebaff)
-            {
-                bonus.PickUp();
-                StartCoroutine(JumpDebaff());
-            }
-        }
-        //else if(other.TryGetComponent<Items>(out var item) == true)
-        //{
-        //    item.AddItem(hit.collider.gameObject.GetComponent<Items>());
-        //}
+
     }
 
     public void Jump()
     {
         animator.SetBool("isJumping", false);
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-    }
-    IEnumerator SlowSpeed()
-    {
-        speed -= 1f;
-        yield return new WaitForSeconds(5.0f);
-           speed += 1.0f;
-    }
-    IEnumerator BoostSpeed()
-    {
-        speed += 3.0f;
-        yield return new WaitForSeconds(5.0f);
-        speed -= 3.0f;
-    }
-    IEnumerator JumpBaff()
-    {
-        jumpHeight += 0.4f;
-        yield return new WaitForSeconds(5.0f);
-        jumpHeight -= 0.4f;
-    }
-    IEnumerator JumpDebaff()
-    {
-        jumpHeight -= 0.4f;
-        yield return new WaitForSeconds(5.0f);
-        jumpHeight += 0.4f;
     }
 }

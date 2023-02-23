@@ -91,7 +91,7 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         oldSlot.amount = amount;
         if (isEmpty == false)
         {
-            oldSlot.SetIcon(iconGO.GetComponent<Image>().sprite);
+            oldSlot.SetIcon(item.icon);
             oldSlot.itemAmountText.text = amount.ToString();
         }
         else

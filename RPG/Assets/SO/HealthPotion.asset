@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: HealthPotion
   maximumAmount: 5
   itemPrefab: {fileID: 6775236295788765615, guid: 4d738179b8e51a54a9a3432653ff06a3, type: 3}
-  icon: {fileID: 21300000, guid: bdc9b2a784edb014693e17ecd5dca02e, type: 3}
+  icon: {fileID: 21300000, guid: e314291cf47a83c4fb1d114fdf534cde, type: 3}
   itemType: 1
   itemDescription: Health +20
   isConsumeable: 1
