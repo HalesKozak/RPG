@@ -7,10 +7,13 @@ public class InventoryManager : MonoBehaviour
 {
     public GameObject UIBG;
     public Transform inventoryPanel;
+    public Transform quickSlotPanel;
     public List<InventorySlot> slots = new List<InventorySlot>();
+    private Camera mainCamera;
+
     public bool isOpened;
     public float reachDistance = 3f;
-    private Camera mainCamera;
+
     private void Awake()
     {
         UIBG.SetActive(true);
@@ -20,16 +23,24 @@ public class InventoryManager : MonoBehaviour
         mainCamera = Camera.main;
         for (int i = 0; i < inventoryPanel.childCount; i++)
         {
-            if (inventoryPanel.GetChild(i).GetComponent<InventorySlot>() != null)
+            var invSlotScript = inventoryPanel.GetChild(i).GetComponent<InventorySlot>();
+            if (invSlotScript != null)
             {
-                slots.Add(inventoryPanel.GetChild(i).GetComponent<InventorySlot>());
+                slots.Add(invSlotScript);
+            }
+        }
+        for (int i = 0; i < quickSlotPanel.childCount; i++)
+        {
+            var invSlotScript = quickSlotPanel.GetChild(i).GetComponent<InventorySlot>();
+            if (invSlotScript != null)
+            {
+                slots.Add(invSlotScript);
             }
         }
         UIBG.SetActive(false);
         inventoryPanel.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
@@ -40,7 +51,6 @@ public class InventoryManager : MonoBehaviour
                 UIBG.SetActive(true);
                 inventoryPanel.gameObject.SetActive(true);
                 Cursor.lockState = CursorLockMode.None;
-                // и делаем его невидимым
                 Cursor.visible = true;
 
             }
@@ -49,7 +59,6 @@ public class InventoryManager : MonoBehaviour
                 UIBG.SetActive(false);
                 inventoryPanel.gameObject.SetActive(false);
                 Cursor.lockState = CursorLockMode.Locked;
-                // и делаем его невидимым
                 Cursor.visible = false;
             }
         }
@@ -60,9 +69,10 @@ public class InventoryManager : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, reachDistance))
             {
-                if (hit.collider.gameObject.GetComponent<Item>() != null)
+                var itemScript = hit.collider.gameObject.GetComponent<Item>();
+                if (itemScript != null)
                 {
-                    AddItem(hit.collider.gameObject.GetComponent<Item>().item, hit.collider.gameObject.GetComponent<Item>().amount);
+                    AddItem(itemScript.item, itemScript.amount);
                     Destroy(hit.collider.gameObject);
                 }
             }
@@ -72,7 +82,6 @@ public class InventoryManager : MonoBehaviour
     {
         foreach (InventorySlot slot in slots)
         {
-            // ¬ слоте уже имеетс€ этот предмет
             if (slot.item == _item)
             {
                 if (slot.amount + _amount <= _item.maximumAmount)
@@ -92,7 +101,10 @@ public class InventoryManager : MonoBehaviour
                 slot.amount = _amount;
                 slot.isEmpty = false;
                 slot.SetIcon(_item.icon);
-                slot.itemAmountText.text = _amount.ToString();
+                if (slot.item.maximumAmount != 1)
+                {
+                    slot.itemAmountText.text = _amount.ToString();
+                }
                 break;
             }
         }

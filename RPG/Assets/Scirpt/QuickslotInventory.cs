@@ -11,11 +11,12 @@ public class QuickslotInventory : MonoBehaviour
 
     public Transform quickslotParent;
     public Transform allWeapons;
+
     public Sprite selectedSprite;
     public Sprite notSelectedSprite;
 
     public int currentQuickslotID = 0;
-
+  
     void Update()
     {
         float mw = Input.GetAxis("Mouse ScrollWheel");
@@ -36,6 +37,7 @@ public class QuickslotInventory : MonoBehaviour
             // Берем предыдущий слот и меняем его картинку на "выбранную"
             quickslotParent.GetChild(currentQuickslotID).GetComponent<Image>().sprite = selectedSprite;
             activeSlot = quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>();
+            ShowItemInHand();
             // Что то делаем с предметом:
 
         }
@@ -50,80 +52,116 @@ public class QuickslotInventory : MonoBehaviour
             }
             else
             {
-                // Уменьшаем число currentQuickslotID на 1
                 currentQuickslotID--;
             }
             // Берем предыдущий слот и меняем его картинку на "выбранную"
             quickslotParent.GetChild(currentQuickslotID).GetComponent<Image>().sprite = selectedSprite;
             activeSlot = quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>();
+            ShowItemInHand();
             // Что то делаем с предметом:
 
         }
         // Используем цифры
         for (int i = 0; i < quickslotParent.childCount; i++)
         {
-            // если мы нажимаем на клавиши 1 по 5 то...
             if (Input.GetKeyDown((i + 1).ToString()))
             {
-                // проверяем если наш выбранный слот равен слоту который у нас уже выбран, то
+                var InvSlot = quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>();
+                var Img = quickslotParent.GetChild(currentQuickslotID).GetComponent<Image>();
                 if (currentQuickslotID == i)
                 {
-                    // Ставим картинку "selected" на слот если он "not selected" или наоборот
-                    if (quickslotParent.GetChild(currentQuickslotID).GetComponent<Image>().sprite == notSelectedSprite)
+                    if (Img.sprite == notSelectedSprite)
                     {
-                        quickslotParent.GetChild(currentQuickslotID).GetComponent<Image>().sprite = selectedSprite;
-                        activeSlot = quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>();
+                        Img.sprite = selectedSprite;
+                        activeSlot = InvSlot;
+                        ShowItemInHand();
                     }
                     else
                     {
-                        quickslotParent.GetChild(currentQuickslotID).GetComponent<Image>().sprite = notSelectedSprite;
+                        Img.sprite = notSelectedSprite;
                         activeSlot = null;
+                        HideItemInHand();
                     }
                 }
-                // Иначе мы убираем свечение с предыдущего слота и светим слот который мы выбираем
                 else
                 {
-                    quickslotParent.GetChild(currentQuickslotID).GetComponent<Image>().sprite = notSelectedSprite;
+                    Img.sprite = notSelectedSprite;
                     currentQuickslotID = i;
 
                     quickslotParent.GetChild(currentQuickslotID).GetComponent<Image>().sprite = selectedSprite;
                     activeSlot = quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>();
+                    ShowItemInHand();
                 }
             }
         }
         //Используем предмет по нажатию на левую кнопку мыши
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>().item != null)
+            var InvSlot = quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>();
+            if (InvSlot.item != null)
             {
-                if (quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>().item.isConsumeable && quickslotParent.GetChild(currentQuickslotID).GetComponent<Image>().sprite == selectedSprite)
+                if (InvSlot.item.isConsumeable && quickslotParent.GetChild(currentQuickslotID).GetComponent<Image>().sprite == selectedSprite)
                 {
                     // Применяем изменения к здоровью (будущем к голоду и жажде) 
                     ChangeCharacteristics();
 
-                    if (quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>().amount <= 1)
+                    if (InvSlot.amount <= 1)
                     {
                         quickslotParent.GetChild(currentQuickslotID).GetComponentInChildren<DragAndDropItem>().NullifySlotData();
                     }
                     else
                     {
-                        quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>().amount--;
-                        quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>().itemAmountText.text = quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>().amount.ToString();
+                        InvSlot.amount--;
+                        InvSlot.itemAmountText.text = InvSlot.amount.ToString();
                     }
                 }
             }
         }
     }
 
-    private void ChangeCharacteristics()
-    { 
-        if (_statsPlayer.HP + quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>().item.healthCount <= 100)
+    public void CheckItemInHand()
+    {
+        if (activeSlot != null)
         {
-            _statsPlayer.HP += quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>().item.healthCount;
+            ShowItemInHand();
+        }
+        else HideItemInHand();
+    }
+
+    private void ChangeCharacteristics()
+    {
+        var healthCount = quickslotParent.GetChild(currentQuickslotID).GetComponent<InventorySlot>().item.healthCount;
+        if (_statsPlayer.HP + healthCount <= 100)
+        {
+            _statsPlayer.HP += healthCount;
         }
         else
         {
             _statsPlayer.HP = 100;
+        }
+    }
+
+    private void ShowItemInHand()
+    {
+        HideItemInHand();
+        if(activeSlot.item == null)
+        {
+            return;
+        }
+        for (int i = 0; i < allWeapons.childCount; i++)
+        {
+            if(activeSlot.item.inHandName == allWeapons.GetChild(i).name)
+            {
+                allWeapons.GetChild(i).gameObject.SetActive(true); 
+            }
+        }
+    }
+
+    private void HideItemInHand()
+    {
+        for (int i = 0; i < allWeapons.childCount; i++)
+        {
+            allWeapons.GetChild(i).gameObject.SetActive(false);
         }
     }
 }

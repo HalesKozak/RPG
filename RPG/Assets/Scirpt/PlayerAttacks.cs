@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttacks : MonoBehaviour
 {
-    [SerializeField] private StatsPlayer _strength;
+    [SerializeField] private StatsPlayer _statsPlayer;
     private float timeBtwAttack;
     public float startTimeBtwAttack;
 
@@ -12,25 +12,28 @@ public class PlayerAttacks : MonoBehaviour
     public float attackRange;
     public LayerMask whatIsEnemy;
 
+    public Animator animator;
+
+    public void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
     void Update()
+    {
+        timeBtwAttack -= Time.deltaTime;
+    }
+
+    public void Attack()
     {
         if (timeBtwAttack <= 0)
         {
-            if(Input.GetKey(KeyCode.Mouse0))
+            Collider[] enemisToDamage = Physics.OverlapSphere(attackPose.position, attackRange, whatIsEnemy);
+            for (int i = 0; i < enemisToDamage.Length; i++)
             {
-                Collider[] enemisToDamage = Physics.OverlapSphere(attackPose.position, attackRange, whatIsEnemy);
-                for (int i = 0; i < enemisToDamage.Length; i++)
-                {
-                    enemisToDamage[i].GetComponent<EnemyStats>().TakeDamage(_strength.Strength);
-                }
-
-                timeBtwAttack = startTimeBtwAttack;
+                enemisToDamage[i].GetComponent<EnemyStats>().TakeDamage(_statsPlayer.strength);
             }
         }
-        else
-        {
-            timeBtwAttack -= Time.deltaTime;
-        }
+        timeBtwAttack = startTimeBtwAttack;
     }
 
     private void OnDrawGizmosSelected()

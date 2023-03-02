@@ -4,56 +4,48 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
+public class DragAndDropItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IEndDragHandler
 {
     public InventorySlot oldSlot;
-    private Transform player;
+   // private Transform player;
+    private QuickslotInventory _quickslotInventory;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        _quickslotInventory = FindObjectOfType<QuickslotInventory>();
+        //player = GameObject.FindGameObjectWithTag("Player").transform;
         oldSlot = transform.GetComponentInParent<InventorySlot>();
+    }
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        if (oldSlot.isEmpty)
+            return;
+        transform.SetParent(transform.parent.parent);
     }
     public void OnDrag(PointerEventData eventData)
     {
         if (oldSlot.isEmpty)
             return;
-        GetComponent<RectTransform>().position += new Vector3(eventData.delta.x, eventData.delta.y);
+        transform.position = Input.mousePosition; 
+        
     }
-
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnEndDrag(PointerEventData eventData)
     {
         if (oldSlot.isEmpty)
             return;
-
-        GetComponentInChildren<Image>().color = new Color(1, 1, 1, 0.75f);
-        GetComponentInChildren<Image>().raycastTarget = false;
-        transform.SetParent(transform.parent.parent);
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        if (oldSlot.isEmpty)
-            return;
-
-        GetComponentInChildren<Image>().color = new Color(1, 1, 1, 1f);
-        GetComponentInChildren<Image>().raycastTarget = true;
-
         transform.SetParent(oldSlot.transform);
         transform.position = oldSlot.transform.position;
-
-        if (eventData.pointerCurrentRaycast.gameObject.name == "UIBG")
-        {
-            GameObject itemObject = Instantiate(oldSlot.item.itemPrefab, player.position + player.forward, Quaternion.identity);
-            itemObject.GetComponent<Item>().amount = oldSlot.amount;
-            NullifySlotData();
-        }
-        else if (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>() != null)
-        {
-            ExchangeSlotData(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>());
-        }
-
+        //if (eventData.pointerCurrentRaycast.gameObject.name == "UIBG")
+        //{
+        //    GameObject itemObject = Instantiate(oldSlot.item.itemPrefab, player.position + player.forward, Quaternion.identity);
+        //    itemObject.GetComponent<Item>().amount = oldSlot.amount;
+        //    NullifySlotData();
+        //    _quickslotInventory.CheckItemInHand();
+        //}
+        ExchangeSlotData(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>());
+        _quickslotInventory.CheckItemInHand();
     }
+
     public void NullifySlotData()
     {
         oldSlot.item = null;
@@ -76,7 +68,12 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if (oldSlot.isEmpty == false)
         {
             newSlot.SetIcon(oldSlot.iconGO.GetComponent<Image>().sprite);
-            newSlot.itemAmountText.text = oldSlot.amount.ToString();
+            if (oldSlot.item.maximumAmount !=1)
+            {
+                newSlot.itemAmountText.text = oldSlot.amount.ToString();
+            }
+            else newSlot.itemAmountText.text = "";
+
         }
         else
         {
@@ -92,7 +89,11 @@ public class DragAndDropItem : MonoBehaviour, IPointerDownHandler, IPointerUpHan
         if (isEmpty == false)
         {
             oldSlot.SetIcon(item.icon);
-            oldSlot.itemAmountText.text = amount.ToString();
+            if (oldSlot.item.maximumAmount != 1)
+            {
+                newSlot.itemAmountText.text = oldSlot.amount.ToString();
+            }
+            else newSlot.itemAmountText.text = "";
         }
         else
         {

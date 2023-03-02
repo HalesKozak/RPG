@@ -7,7 +7,7 @@ public class StatsPlayer : MonoBehaviour
     public GameObject particleDamage;
     public float HP;
     public float MP;
-    public int Strength;
+    public int strength;
 
     public void TakeDamage(int damage)
     {

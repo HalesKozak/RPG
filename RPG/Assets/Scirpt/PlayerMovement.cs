@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     public InventoryManager _inventoryManager;
     public QuickslotInventory _quickslotInventory;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -42,25 +43,19 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (_quickslotInventory.activeSlot != null)
+            if (_quickslotInventory.activeSlot != null && _quickslotInventory.activeSlot.item != null && _quickslotInventory.activeSlot.item.itemType == ItemType.Weapon)
             {
-                if (_quickslotInventory.activeSlot.item != null)
+                if (_inventoryManager.isOpened == false && animator.GetBool("isJumping")==false)
                 {
-                    if(_quickslotInventory.activeSlot.item.itemType == ItemType.Weapon)
-                    {
-                        if (_inventoryManager.isOpened == false)
-                        {
-                            //Hit 
-                        }
-                    }
+                    animator.SetBool("Attack", true);
                 }
             }
         }
-        else if (Input.GetKeyUp(KeyCode.Mouse0))
+        else
         {
-            // hit = false
+            animator.SetBool("Attack", false);
         }
-
+           
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) 
         {
         
@@ -106,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
             speed -= 1f;
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isGrounded)
             {
@@ -120,9 +115,21 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    public void Jump()
+    private void StartJump()
+    {
+        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        animator.SetBool("Attack", false);
+    }
+    private void EndJump()
     {
         animator.SetBool("isJumping", false);
-        velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+    }
+    private void StartAttack()
+    {
+        speed = 0;
+    }
+    private void EndAttack()
+    {
+        speed = 3;
     }
 }

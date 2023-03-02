@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d3696d48bd1614ab0f7f960de73747, type: 3}
   m_Name: StoneSword
   m_EditorClassIdentifier: 
-  itemName: StoneSword
-  maximumAmount: 1
+  itemType: 2
   itemPrefab: {fileID: 1753325093932854839, guid: a3884a940f9a8d3418a27008b045837c, type: 3}
   icon: {fileID: 21300000, guid: 2eb4bffbb0e19614e9a264c8a716f86a, type: 3}
-  itemType: 2
+  itemName: StoneSword
   itemDescription: 
+  inHandName: StoneSword
   isConsumeable: 0
+  maximumAmount: 1
   speedCount: 0
   jumpCount: 0
   healthCount: 0
   manaCount: 0
-  damage: 10
+  damageCount: 0
