@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d3696d48bd1614ab0f7f960de73747, type: 3}
   m_Name: ManaPotion
   m_EditorClassIdentifier: 
-  itemName: ManaPotion
-  maximumAmount: 5
+  itemType: 1
   itemPrefab: {fileID: 8052322607416051661, guid: 25c475c5f301b244cb44c7f38f7546c1, type: 3}
   icon: {fileID: 21300000, guid: cc6104562e6c8534b9acd8ba496b4114, type: 3}
-  itemType: 1
+  itemName: ManaPotion
   itemDescription: Mana +10
-  isConsumeable: 1
+  inHandName: ManaKitInHand
+  maximumAmount: 5
   speedCount: 0
   jumpCount: 0
   healthCount: 0
   manaCount: 10
+  damageCount: 0

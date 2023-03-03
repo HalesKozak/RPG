@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d3696d48bd1614ab0f7f960de73747, type: 3}
   m_Name: SpeedBaffPotion
   m_EditorClassIdentifier: 
-  itemName: SpeedBaffPotion
-  maximumAmount: 1
+  itemType: 1
   itemPrefab: {fileID: 4772361633206065474, guid: 04201907e7516df43abf45757de4011f, type: 3}
   icon: {fileID: 21300000, guid: ee35190d18eb5df45bd00ff8b2832a45, type: 3}
-  itemType: 1
+  itemName: SpeedBaffPotion
   itemDescription: 
-  isConsumeable: 1
+  inHandName: PotionSpeedInHand
+  maximumAmount: 5
   speedCount: 2
   jumpCount: 0
   healthCount: 0
   manaCount: 0
+  damageCount: 0

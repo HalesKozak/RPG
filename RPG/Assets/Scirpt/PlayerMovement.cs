@@ -6,7 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
     public Transform player;
-    Animator animator;
+    private Animator animator;
+    public AudioSource attackClip;
+    public AudioSource drinkingClip;
 
     public float speed = 3;
     public float gravity = -10;
@@ -18,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
     private bool isGrounded;
+    public bool isAction;
 
     public InventoryManager _inventoryManager;
     public QuickslotInventory _quickslotInventory;
@@ -40,20 +43,35 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(move * speed * Time.deltaTime);
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
-
+        if (isAction)
+        {
+            speed = 0;
+        }
+        else if(isAction == false && speed == 0)
+        {
+            speed += 3;
+        }
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            if (_quickslotInventory.activeSlot != null && _quickslotInventory.activeSlot.item != null && _quickslotInventory.activeSlot.item.itemType == ItemType.Weapon)
+            if (_quickslotInventory.activeSlot != null && _quickslotInventory.activeSlot.item != null) 
             {
-                if (_inventoryManager.isOpened == false && animator.GetBool("isJumping")==false)
+                if (_inventoryManager.isOpened == false && animator.GetBool("isJumping") == false)
                 {
-                    animator.SetBool("Attack", true);
+                    if (_quickslotInventory.activeSlot.item.itemType == ItemType.Weapon)
+                    {
+                        animator.SetBool("Attack", true);
+                    }
+                    else if (_quickslotInventory.activeSlot.item.itemType == ItemType.Potion)
+                    {
+                        animator.SetBool("isDrinking", true);
+                    }
                 }
             }
         }
         else
         {
             animator.SetBool("Attack", false);
+            animator.SetBool("isDrinking", false);
         }
            
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) 
@@ -83,24 +101,23 @@ public class PlayerMovement : MonoBehaviour
         }
         else animator.SetFloat("Side", 10);
         //Shift
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift)&&speed!=0)
         {
-            speed -= 1f;       
+            speed -= 1f;
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        else if (Input.GetKeyUp(KeyCode.LeftShift) && speed != 0)
         {
             speed += 1f;
         }
         //Ctrl
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) && speed != 0)
         {
             speed += 1f;
         }
-        else if (Input.GetKeyUp(KeyCode.LeftControl))
+        else if (Input.GetKeyUp(KeyCode.LeftControl) && speed != 0)
         {
             speed -= 1f;
         }
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (isGrounded)
@@ -112,24 +129,35 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-
+        if (other.TryGetComponent<Item>(out var itemScript) == true)
+        {
+            if (itemScript != null)
+            {
+                _inventoryManager.AddItem(itemScript.item, itemScript.amount);
+                Destroy(other.gameObject);
+            }
+        }
     }
-
+   
     private void StartJump()
     {
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        animator.SetBool("Attack", false);
     }
-    private void EndJump()
+    private void StartAction()
     {
-        animator.SetBool("isJumping", false);
+        isAction = true;
     }
-    private void StartAttack()
+    private void AttackAudio()
     {
-        speed = 0;
+        attackClip.Play();
     }
-    private void EndAttack()
+    private void StartDrink() 
     {
-        speed = 3;
+        isAction = true;
+        drinkingClip.Play();
+    }
+    private void EndAction()
+    {
+        isAction = false;
     }
 }

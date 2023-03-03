@@ -18,8 +18,8 @@ public class ProgressBar : MonoBehaviour
 
     void GetCurrentFill()
     {
-        float currentHPOffset = _statsPlayer.HP - minimum;
-        float currentMPOffset = _statsPlayer.MP - minimum;
+        float currentHPOffset = _statsPlayer.healthPoint - minimum;
+        float currentMPOffset = _statsPlayer.manaPoint - minimum;
         float maximumOffset = maximum - minimum;
         float fillHPAmount = currentHPOffset / maximumOffset;
         float fillMPAmount = currentMPOffset / maximumOffset;

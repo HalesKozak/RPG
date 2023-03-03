@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d3696d48bd1614ab0f7f960de73747, type: 3}
   m_Name: JumpBaffPotion
   m_EditorClassIdentifier: 
-  itemName: JumpBaffPotion
-  maximumAmount: 5
+  itemType: 1
   itemPrefab: {fileID: 4430001058458883142, guid: 9d21ebadbd6fb754f9a427ee0674eb7f, type: 3}
   icon: {fileID: 21300000, guid: 3a80d8b15c7b2fd458d3b3e63f1494a5, type: 3}
-  itemType: 1
+  itemName: JumpBaffPotion
   itemDescription: 
-  isConsumeable: 1
+  inHandName: PotionJumpInHand
+  maximumAmount: 5
   speedCount: 0
   jumpCount: 2
   healthCount: 0
   manaCount: 0
+  damageCount: 0

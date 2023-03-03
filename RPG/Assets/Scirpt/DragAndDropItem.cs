@@ -12,6 +12,7 @@ public class DragAndDropItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IE
 
     private void Start()
     {
+
         _quickslotInventory = FindObjectOfType<QuickslotInventory>();
         //player = GameObject.FindGameObjectWithTag("Player").transform;
         oldSlot = transform.GetComponentInParent<InventorySlot>();
@@ -48,15 +49,18 @@ public class DragAndDropItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IE
 
     public void NullifySlotData()
     {
+        var OldIconGOImg = oldSlot.iconGO.GetComponent<Image>();
         oldSlot.item = null;
         oldSlot.amount = 0;
         oldSlot.isEmpty = true;
-        oldSlot.iconGO.GetComponent<Image>().color = new Color(1, 1, 1,0);
-        oldSlot.iconGO.GetComponent<Image>().sprite = null;
+        OldIconGOImg.color = new Color(1, 1, 1,0);
+        OldIconGOImg.sprite = null;
         oldSlot.itemAmountText.text = "";
     }
     private void ExchangeSlotData(InventorySlot newSlot)
     {
+        var OldIconGOImg = oldSlot.iconGO.GetComponent<Image>();
+        var NewIconGOImg = newSlot.iconGO.GetComponent<Image>();
         ItemSObject item = newSlot.item;
         int amount = newSlot.amount;
         bool isEmpty = newSlot.isEmpty;
@@ -67,7 +71,7 @@ public class DragAndDropItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IE
         newSlot.amount = oldSlot.amount;
         if (oldSlot.isEmpty == false)
         {
-            newSlot.SetIcon(oldSlot.iconGO.GetComponent<Image>().sprite);
+            newSlot.SetIcon(OldIconGOImg.sprite);
             if (oldSlot.item.maximumAmount !=1)
             {
                 newSlot.itemAmountText.text = oldSlot.amount.ToString();
@@ -77,8 +81,8 @@ public class DragAndDropItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IE
         }
         else
         {
-            newSlot.iconGO.GetComponent<Image>().color = new Color(1, 1, 1, 0);
-            newSlot.iconGO.GetComponent<Image>().sprite = null;
+            NewIconGOImg.color = new Color(1, 1, 1, 0);
+            NewIconGOImg.sprite = null;
             newSlot.itemAmountText.text = "";
         }
 
@@ -97,8 +101,8 @@ public class DragAndDropItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IE
         }
         else
         {
-            oldSlot.iconGO.GetComponent<Image>().color = new Color(1, 1, 1, 0);
-            oldSlot.iconGO.GetComponent<Image>().sprite = null;
+            OldIconGOImg.color = new Color(1, 1, 1, 0);
+            OldIconGOImg.sprite = null;
             oldSlot.itemAmountText.text = "";
         }
 

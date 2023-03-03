@@ -14,8 +14,6 @@ public class ItemSObject : ScriptableObject
     public string itemDescription;
     public string inHandName;
 
-    public bool isConsumeable;
-
     public int maximumAmount;
 
     [Header("Characteristics")]

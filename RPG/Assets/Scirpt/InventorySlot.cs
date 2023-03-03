@@ -19,7 +19,8 @@ public class InventorySlot : MonoBehaviour
     }
     public void SetIcon(Sprite icon)
     {
-        iconGO.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-        iconGO.GetComponent<Image>().sprite = icon;
+        var iconGOImg = iconGO.GetComponent<Image>();
+        iconGOImg.color = new Color(1, 1, 1, 1);
+        iconGOImg.sprite = icon;
     }
 }

@@ -62,23 +62,8 @@ public class InventoryManager : MonoBehaviour
                 Cursor.visible = false;
             }
         }
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            if (Physics.Raycast(ray, out hit, reachDistance))
-            {
-                var itemScript = hit.collider.gameObject.GetComponent<Item>();
-                if (itemScript != null)
-                {
-                    AddItem(itemScript.item, itemScript.amount);
-                    Destroy(hit.collider.gameObject);
-                }
-            }
-        }
     }
-    private void AddItem(ItemSObject _item, int _amount)
+    public void AddItem(ItemSObject _item, int _amount)
     {
         foreach (InventorySlot slot in slots)
         {
@@ -109,4 +94,5 @@ public class InventoryManager : MonoBehaviour
             }
         }
     }
+
 }

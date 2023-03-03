@@ -12,14 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d3696d48bd1614ab0f7f960de73747, type: 3}
   m_Name: HealthPotion
   m_EditorClassIdentifier: 
-  itemName: HealthPotion
-  maximumAmount: 5
-  itemPrefab: {fileID: 6775236295788765615, guid: 4d738179b8e51a54a9a3432653ff06a3, type: 3}
-  icon: {fileID: 21300000, guid: e314291cf47a83c4fb1d114fdf534cde, type: 3}
   itemType: 1
+  itemPrefab: {fileID: 6775236295788765615, guid: 4d738179b8e51a54a9a3432653ff06a3, type: 3}
+  audioAttack: {fileID: 0}
+  icon: {fileID: 21300000, guid: e314291cf47a83c4fb1d114fdf534cde, type: 3}
+  itemName: HealthPotion
   itemDescription: Health +20
+  inHandName: HealthKitInHand
   isConsumeable: 1
+  maximumAmount: 5
   speedCount: 0
   jumpCount: 0
   healthCount: 8
   manaCount: 0
+  damageCount: 0
