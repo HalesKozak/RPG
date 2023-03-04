@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6613941054815072240}
   - component: {fileID: 8947956541933165370}
   - component: {fileID: 5904118425340992235}
-  - component: {fileID: 1550626725428768465}
   - component: {fileID: 693688261}
+  - component: {fileID: 911077096}
   m_Layer: 0
   m_Name: DragonDagger
   m_TagString: Untagged
@@ -99,20 +99,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.15021089, y: 0.6361584, z: 0.11049479}
   m_Center: {x: 0.009868011, y: -0.16636476, z: 0.0000000018626451}
---- !u!114 &1550626725428768465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7434734217426156271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b140443e1d8757a46b45a162d1396c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Type: 2
-  MaterialType: 0
 --- !u!95 &693688261
 Animator:
   serializedVersion: 4
@@ -133,3 +119,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &911077096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7434734217426156271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881c0d7dc8858c242879b1043aa24605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: e4e3b9fa518b83b4a8d2c6c7700911a7, type: 2}
+  amount: 1

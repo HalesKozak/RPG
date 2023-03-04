@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private StatsPlayer _statsPlayer;
+    [SerializeField] private InventoryManager _inventoryManager;
+    [SerializeField] private QuickslotInventory _quickslotInventory;
+
     public CharacterController controller;
     public Transform player;
     private Animator animator;
@@ -21,9 +25,6 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     private bool isGrounded;
     public bool isAction;
-
-    public InventoryManager _inventoryManager;
-    public QuickslotInventory _quickslotInventory;
 
     private void Start()
     {
@@ -59,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     if (_quickslotInventory.activeSlot.item.itemType == ItemType.Weapon)
                     {
+                        _statsPlayer.TakeStreng();
                         animator.SetBool("Attack", true);
                     }
                     else if (_quickslotInventory.activeSlot.item.itemType == ItemType.Potion)

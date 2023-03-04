@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
 
     public NavMeshAgent navMeshAgent;               //  Nav mesh agent component
     public float startWaitTime = 4;                 //  Wait time of every action
-    public float timeToRotate = 2;                  //  Wait time when the enemy detect near the player without seeing
+    public float timeToRotate;                  //  Wait time when the enemy detect near the player without seeing
     public float speedWalk;                     //  Walking speed, speed in the nav mesh agent
     public float speedRun;                      //  Running speed
 
@@ -23,18 +23,20 @@ public class EnemyAI : MonoBehaviour
     public float edgeDistance;               //  Max distance to calcule the a minumun and a maximum raycast when hits something
 
     public Transform[] waypoints;                   //  All the waypoints where the enemy patrols
-    int m_CurrentWaypointIndex;                     //  Current waypoint where the enemy is going to
+    private int m_CurrentWaypointIndex;                     //  Current waypoint where the enemy is going to
 
     Vector3 playerLastPosition = Vector3.zero;      //  Last position of the player when was near the enemy
     Vector3 m_PlayerPosition;                       //  Last position of the player when the player is seen by the enemy
 
-    float m_WaitTime;                               //  Variable of the wait time that makes the delay
-    float m_TimeToRotate;                           //  Variable of the wait time to rotate when the player is near that makes the delay
-    bool m_playerInRange;                           //  If the player is in range of vision, state of chasing
-    bool m_PlayerNear;                              //  If the player is near, state of hearing
-    bool m_IsPatrol;                                //  If the enemy is patrol, state of patroling
-    bool m_CaughtPlayer;                            //  if the enemy has caught the player
-    Animator animator;
+
+    public bool m_IsPatrol;
+    private float m_WaitTime;                               //  Variable of the wait time that makes the delay
+    private float m_TimeToRotate;                           //  Variable of the wait time to rotate when the player is near that makes the delay
+    private bool m_playerInRange;                           //  If the player is in range of vision, state of chasing
+    private bool m_PlayerNear;                              //  If the player is near, state of hearing
+                                                            //  If the enemy is patrol, state of patroling
+    private bool m_CaughtPlayer;                            //  if the enemy has caught the player
+    public Animator animator;
     
     void Start()
     {
@@ -203,26 +205,16 @@ public class EnemyAI : MonoBehaviour
                 }
                 else
                 {
-                    /*
-                     *  If the player is behind a obstacle the player position will not be registered
-                     * */
                     m_playerInRange = false;
                     m_IsPatrol = true;
                 }
             }
             if (Vector3.Distance(transform.position, player.position) > viewRadius)
             {
-                /*
-                 *  If the player is further than the view radius, then the enemy will no longer keep the player's current position.
-                 *  Or the enemy is a safe zone, the enemy will no chase
-                 * */
                 m_playerInRange = false;                //  Change the sate of chasing
             }
             if (m_playerInRange)
             {
-                /*
-                 *  If the enemy no longer sees the player, then the enemy will go to the last position that has been registered
-                 * */
                 m_PlayerPosition = player.transform.position;       //  Save the player's current position if the player is in range of vision
             }
         }

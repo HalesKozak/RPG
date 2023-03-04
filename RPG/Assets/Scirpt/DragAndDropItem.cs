@@ -7,14 +7,12 @@ using UnityEngine.UI;
 public class DragAndDropItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IEndDragHandler
 {
     public InventorySlot oldSlot;
-   // private Transform player;
+    public Transform player;
     private QuickslotInventory _quickslotInventory;
 
     private void Start()
     {
-
         _quickslotInventory = FindObjectOfType<QuickslotInventory>();
-        //player = GameObject.FindGameObjectWithTag("Player").transform;
         oldSlot = transform.GetComponentInParent<InventorySlot>();
     }
     public void OnBeginDrag(PointerEventData eventData)
@@ -36,14 +34,14 @@ public class DragAndDropItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IE
             return;
         transform.SetParent(oldSlot.transform);
         transform.position = oldSlot.transform.position;
-        //if (eventData.pointerCurrentRaycast.gameObject.name == "UIBG")
-        //{
-        //    GameObject itemObject = Instantiate(oldSlot.item.itemPrefab, player.position + player.forward, Quaternion.identity);
-        //    itemObject.GetComponent<Item>().amount = oldSlot.amount;
-        //    NullifySlotData();
-        //    _quickslotInventory.CheckItemInHand();
-        //}
-        ExchangeSlotData(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>());
+        if (eventData.pointerCurrentRaycast.gameObject.name == "UIBG")
+        {
+            GameObject itemObject = Instantiate(oldSlot.item.itemPrefab, player.position + player.forward, Quaternion.identity);
+            itemObject.GetComponent<Item>().amount = oldSlot.amount;
+            NullifySlotData();
+            _quickslotInventory.CheckItemInHand();
+        }
+        else ExchangeSlotData(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>());
         _quickslotInventory.CheckItemInHand();
     }
 

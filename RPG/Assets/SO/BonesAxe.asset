@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42d3696d48bd1614ab0f7f960de73747, type: 3}
+  m_Name: BonesAxe
+  m_EditorClassIdentifier: 
+  itemType: 2
+  itemPrefab: {fileID: 189690588361155025, guid: 959d0374e722469498950e643a6b3e6a, type: 3}
+  icon: {fileID: 21300000, guid: b388e0ab2625a954ebd519a00ac9b7d7, type: 3}
+  itemName: BonesAxe
+  itemDescription: 
+  inHandName: BonesAxeInHand
+  maximumAmount: 1
+  speedCount: 0
+  jumpCount: 0
+  healthCount: 0
+  manaCount: 0
+  damageCount: 22

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3541923583975521368}
   - component: {fileID: 1640304163791341714}
   - component: {fileID: 4030034302340404767}
-  - component: {fileID: 5012310449084909134}
   - component: {fileID: 1654776953}
+  - component: {fileID: 2053826767}
   m_Layer: 0
   m_Name: AxeViking
   m_TagString: Untagged
@@ -99,20 +99,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.33514753, y: 0.5853611, z: 0.06419115}
   m_Center: {x: 0.000000014901161, y: 0.14910245, z: -0.000000039115548}
---- !u!114 &5012310449084909134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 991772141375400263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b140443e1d8757a46b45a162d1396c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Type: 0
-  MaterialType: 1
 --- !u!95 &1654776953
 Animator:
   serializedVersion: 4
@@ -133,3 +119,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2053826767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991772141375400263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881c0d7dc8858c242879b1043aa24605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 70ea4bac9ed3ec945afc89eaf9d823c0, type: 2}
+  amount: 1

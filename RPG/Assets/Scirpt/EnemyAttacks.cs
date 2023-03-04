@@ -6,6 +6,7 @@ public class EnemyAttacks : MonoBehaviour
 {
     [SerializeField] private EnemyStats _strength;
 
+    public AudioSource attackClipEnemy;
     public Transform attackPose;
     public float attackRange;
     public LayerMask whatIsPlayer;
@@ -18,7 +19,10 @@ public class EnemyAttacks : MonoBehaviour
                 playerToDamage[i].GetComponent<StatsPlayer>().TakeDamage(_strength.strength);
             }
     }
-
+    private void AttackAudioEnemy()
+    {
+        attackClipEnemy.Play();
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

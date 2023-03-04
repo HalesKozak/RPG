@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttacks : MonoBehaviour
 {
-    [SerializeField] private StatsPlayer _statsPlayer;
+    public StatsPlayer _statsPlayer;
     private float timeBtwAttack;
     public float startTimeBtwAttack;
 

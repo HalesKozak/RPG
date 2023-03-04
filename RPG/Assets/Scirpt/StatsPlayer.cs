@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class StatsPlayer : MonoBehaviour
 {
-    [SerializeField] private QuickslotInventory _quickslotInventory;
-    [SerializeField] private PlayerMovement _playerMovement;
+    public QuickslotInventory _quickslotInventory;
+    public PlayerMovement _playerMovement;
     public Transform quickslotParent;
     public GameObject particleDamage;
+    public AudioSource takeDamageClip;
+
     public float healthPoint;
     public float manaPoint;
     public int strength;
 
     public void TakeDamage(int damage)
     {
+        takeDamageClip.Play();
         StartCoroutine(ParticleDamagePlayer());
         healthPoint -= damage;
+    }
+    public void TakeStreng()
+    {
+        var CurrentItem = quickslotParent.GetChild(_quickslotInventory.currentQuickslotID).GetComponent<InventorySlot>().item;
+        strength = CurrentItem.damageCount;
     }
     private void Drinking()
     {
@@ -54,7 +62,7 @@ public class StatsPlayer : MonoBehaviour
     IEnumerator ParticleDamagePlayer()
     {
         particleDamage.SetActive(true);
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(4.0f);
         particleDamage.SetActive(false);
     }
     IEnumerator SpeedBaffPotion()
@@ -63,7 +71,7 @@ public class StatsPlayer : MonoBehaviour
         {
             _playerMovement.speed += 3f;
         }
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(10.0f);
         if (_playerMovement.speed >= 4f)
         {
             _playerMovement.speed -= 3f;
@@ -76,7 +84,7 @@ public class StatsPlayer : MonoBehaviour
         {
             _playerMovement.jumpHeight += 0.7f;
         }
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(10.0f);
         _playerMovement.jumpHeight = 0.7f;
     }
 }

@@ -17,8 +17,9 @@ public class QuickslotInventory : MonoBehaviour
     public Sprite notSelectedSprite;
 
     public int currentQuickslotID = 0;
-  
-    void Update()
+
+
+    private void Update()
     {
         float mw = Input.GetAxis("Mouse ScrollWheel");
         // Используем колесико мышки

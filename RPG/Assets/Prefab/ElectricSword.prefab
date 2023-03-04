@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 120171685783739237}
   - component: {fileID: 2760170882203905967}
   - component: {fileID: 8501483192871543609}
-  - component: {fileID: 5086111981928242128}
   - component: {fileID: 289633319}
+  - component: {fileID: 596190110}
   m_Layer: 0
   m_Name: ElectricSword
   m_TagString: Untagged
@@ -28,14 +28,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4417719777104776826}
-  m_LocalRotation: {x: -0.007959389, y: 0.40424833, z: -0.3013537, w: 0.8635427}
+  m_LocalRotation: {x: -0.008665111, y: 0.25624195, z: -0.19606571, w: 0.9464794}
   m_LocalPosition: {x: -0.04263348, y: -0.020995252, z: -0.027038202}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 13.291, y: 46.246, z: -32.779}
+  m_LocalEulerAnglesHint: {x: 4.823, y: 29.353, z: -22.143}
 --- !u!33 &120171685783739237
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -99,20 +99,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.391366, y: 1.1583819, z: 0.085711695}
   m_Center: {x: -0.0510415, y: 0.03245899, z: -0.0000053681433}
---- !u!114 &5086111981928242128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4417719777104776826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b140443e1d8757a46b45a162d1396c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Type: 1
-  MaterialType: 0
 --- !u!95 &289633319
 Animator:
   serializedVersion: 4
@@ -133,3 +119,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &596190110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4417719777104776826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881c0d7dc8858c242879b1043aa24605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: ecb692e3ed5f329459c939c3d8f08874, type: 2}
+  amount: 1

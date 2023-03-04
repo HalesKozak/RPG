@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1731004711075627088}
   - component: {fileID: 4603018383147938970}
   - component: {fileID: 4052536765414425676}
-  - component: {fileID: 3724878096472580880}
   - component: {fileID: 3999145230869784533}
+  - component: {fileID: 124422406}
   m_Layer: 0
   m_Name: DemonAxe
   m_TagString: Untagged
@@ -99,20 +99,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5641184, y: 1.3428087, z: 0.1612441}
   m_Center: {x: 0.04412186, y: 0.52655303, z: 0.00000009313226}
---- !u!114 &3724878096472580880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2657625865324565839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b140443e1d8757a46b45a162d1396c8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Type: 0
-  MaterialType: 0
 --- !u!95 &3999145230869784533
 Animator:
   serializedVersion: 4
@@ -133,3 +119,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &124422406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2657625865324565839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 881c0d7dc8858c242879b1043aa24605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 19da923216218904aa41580171fa27c3, type: 2}
+  amount: 1

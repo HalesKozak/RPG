@@ -14,15 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 2
   itemPrefab: {fileID: 1753325093932854839, guid: a3884a940f9a8d3418a27008b045837c, type: 3}
-  audioAttack: {fileID: 8300000, guid: 424034a9bd75de844927af6a184f5764, type: 3}
   icon: {fileID: 21300000, guid: 2eb4bffbb0e19614e9a264c8a716f86a, type: 3}
   itemName: StoneSword
   itemDescription: 
   inHandName: StoneSwordInHand
-  isConsumeable: 0
   maximumAmount: 1
   speedCount: 0
   jumpCount: 0
   healthCount: 0
   manaCount: 0
-  damageCount: 0
+  damageCount: 10

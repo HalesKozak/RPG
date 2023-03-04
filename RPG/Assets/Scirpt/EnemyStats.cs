@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class EnemyStats : MonoBehaviour
 {
     [SerializeField] private GameObject prefabDead;
+    [SerializeField] private AudioSource takeDamageClipEnemy;
     public GameObject particleDamage;
 
     public int health;
@@ -27,13 +28,14 @@ public class EnemyStats : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        StartCoroutine(ParticleDamage());
         health -= damage;
+        takeDamageClipEnemy.Play();
+        StartCoroutine(ParticleDamage());
     }
     IEnumerator ParticleDamage()
     {
         particleDamage.SetActive(true);
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(5.0f);
         particleDamage.SetActive(false);
     }
 }

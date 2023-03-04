@@ -365,6 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oldSlot: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &6540453485720111902
 MonoBehaviour:
   m_ObjectHideFlags: 0
