@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class EnemyStats : MonoBehaviour
 {
     [SerializeField] private GameObject prefabDead;
+    [SerializeField] private GameObject prefabSpawnerEnemy;
     [SerializeField] private AudioSource takeDamageClipEnemy;
     public GameObject particleDamage;
 
@@ -23,6 +24,7 @@ public class EnemyStats : MonoBehaviour
         {
             GameObject exposionRef = Instantiate(prefabDead);
             exposionRef.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            Instantiate(prefabSpawnerEnemy);
             Destroy(gameObject);
         }
     }
