@@ -63,6 +63,7 @@ public class EnemyAI : MonoBehaviour
         EnviromentView();                       //  Check whether or not the player is in the enemy's field of vision;
         if (!m_IsPatrol)
         {
+            Debug.Log("Chasing");
             Chasing();
         }
         else

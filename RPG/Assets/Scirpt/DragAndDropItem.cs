@@ -41,6 +41,7 @@ public class DragAndDropItem : MonoBehaviour, IDragHandler, IBeginDragHandler,IE
             NullifySlotData();
             _quickslotInventory.CheckItemInHand();
         }
+        else if (eventData.pointerCurrentRaycast.gameObject.transform.parent.parent == null) return;
         else ExchangeSlotData(eventData.pointerCurrentRaycast.gameObject.transform.parent.parent.GetComponent<InventorySlot>());
         _quickslotInventory.CheckItemInHand();
     }
